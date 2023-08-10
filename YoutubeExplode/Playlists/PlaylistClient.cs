@@ -152,6 +152,7 @@ public class PlaylistClient
                     videoTitle,
                     new Author(videoChannelId, videoChannelTitle),
                     videoData.Duration,
+                    videoData.IsLive,
                     videoThumbnails
                 );
 

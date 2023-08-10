@@ -40,6 +40,17 @@ internal class PlaylistVideoData
             .ConcatToString()
     );
 
+    public bool? IsLive => Memo.Cache(this, () =>
+        _content
+            .GetPropertyOrNull("badges")?
+            .EnumerateArrayOrNull()?
+            .Select(j => j.GetPropertyOrNull("metadataBadgeRenderer")?
+                .GetPropertyOrNull("style")?
+                .GetStringOrNull())
+            .WhereNotNull()
+            .Any(l => l == "BADGE_STYLE_TYPE_LIVE_NOW") ?? false
+    );
+
     private JsonElement? AuthorDetails => Memo.Cache(this, () =>
         _content
             .GetPropertyOrNull("longBylineText")?
