@@ -32,6 +32,11 @@ public class Video : IVideo
     /// </summary>
     public string Description { get; }
 
+    /// <summary>
+    /// Name of the game being played, if any.
+    /// </summary>
+    public string? GameName { get; }
+
     /// <inheritdoc />
     public TimeSpan? Duration { get; }
 
@@ -57,6 +62,7 @@ public class Video : IVideo
         Author author,
         DateTimeOffset uploadDate,
         string description,
+        string? gameName,
         TimeSpan? duration,
         IReadOnlyList<Thumbnail> thumbnails,
         IReadOnlyList<string> keywords,
@@ -67,6 +73,7 @@ public class Video : IVideo
         Author = author;
         UploadDate = uploadDate;
         Description = description;
+        GameName = gameName;
         Duration = duration;
         Thumbnails = thumbnails;
         Keywords = keywords;

@@ -55,6 +55,19 @@ internal partial class VideoWatchPage
             .ParseLongOrNull()
     );
 
+    public string? GameName => Memo.Cache(this, () =>
+        _content
+            .Source
+            .Text
+            .Pipe(s => Regex.Match(
+                s,
+                """
+                "RICH_METADATA_RENDERER_STYLE_BOX_ART".+?"title":\s*{\s*"simpleText"\s*:\s*"(?<game>.*?)"\s*}
+                """
+            ).Groups[1].Value)
+            .NullIfWhiteSpace()
+    );
+
     private JsonElement? PlayerConfig => Memo.Cache(this, () =>
         _content
             .GetElementsByTagName("script")

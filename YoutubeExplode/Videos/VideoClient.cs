@@ -94,6 +94,7 @@ public class VideoClient
             new Author(channelId, channelTitle),
             uploadDate,
             playerResponse.Description ?? "",
+            watchPage.GameName,
             playerResponse.Duration,
             thumbnails,
             playerResponse.Keywords,
